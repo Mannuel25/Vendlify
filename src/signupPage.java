@@ -12,6 +12,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 
 public class signupPage extends javax.swing.JFrame {
 
@@ -161,18 +164,44 @@ public class signupPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
+    private static String hashPassword(String password) {
+        try {
+            // Create a MessageDigest instance for SHA-256
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+
+            // Add password bytes to digest
+            md.update(password.getBytes());
+
+            // Get the hashed password bytes
+            byte[] hashedBytes = md.digest();
+
+            // Convert the byte array to a hexadecimal string
+            StringBuilder stringBuilder = new StringBuilder();
+            for (byte hashedByte : hashedBytes) {
+                stringBuilder.append(Integer.toString((hashedByte & 0xff) + 0x100, 16).substring(1));
+            }
+
+            return stringBuilder.toString();
+        } catch (NoSuchAlgorithmException e) {
+            // Handle the exception or rethrow it
+            e.printStackTrace();
+            return null;
+        }
+    }
+
     
     private static void signupUser(Connection connection, String full_name, String email, String password) throws SQLException {
-        String sql = "INSERT INTO vendors (full_name, email, password) VALUES (?, ?,?)";
+        String hashedPassword = hashPassword(password);
+        String sql = "INSERT INTO vendors (full_name, email, password) VALUES (?, ?, ?)";
         try (PreparedStatement preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, full_name);
             preparedStatement.setString(2, email);
-            preparedStatement.setString(3, password);
+            preparedStatement.setString(3, hashedPassword);
 
             int affectedRows = preparedStatement.executeUpdate();
 
             if (affectedRows > 0) {
-                JOptionPane.showMessageDialog(null, "Signup successul!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Signup successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "Signup failed!", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -197,6 +226,14 @@ public class signupPage extends javax.swing.JFrame {
         catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
+        // Create an instance of the loginppage class
+        loginPage loginForm = new loginPage();
+
+        // Set the visibility of the signuppage form to true
+        loginForm.setVisible(true);
+
+        // Close the current homepage form (optional)
+        this.dispose();
     }//GEN-LAST:event_submit_btnActionPerformed
 
     /**
