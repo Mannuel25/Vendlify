@@ -116,6 +116,8 @@ public class viewItems extends javax.swing.JInternalFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         view_items_table = new javax.swing.JTable();
+        search_input = new javax.swing.JTextField();
+        search_btn = new javax.swing.JButton();
 
         jScrollPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -139,21 +141,43 @@ public class viewItems extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(view_items_table);
 
+        search_input.setFont(new java.awt.Font("Trebuchet MS", 0, 11)); // NOI18N
+
+        search_btn.setBackground(new java.awt.Color(255, 255, 255));
+        search_btn.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
+        search_btn.setText("Search");
+        search_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                search_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(92, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 811, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(81, 81, 81))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(search_input, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(search_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 811, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(search_input, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(search_btn))
+                .addGap(49, 49, 49)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(297, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
 
         pack();
@@ -200,9 +224,71 @@ public class viewItems extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_view_items_tableMouseClicked
 
+    private void search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_search_btnActionPerformed
+        // Get the search query from the text field
+        String searchQuery = search_input.getText().trim();
+
+        if (!searchQuery.isEmpty()) {
+            boolean itemsFound = false; // Flag to check if items were found
+
+            try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
+                // Fetch the email of the logged-in vendor
+                String loggedInVendorEmail = GlobalVariables.getUserEmail();
+
+                // Fetch the vendor ID based on the email
+                int vendorId = getUserIdFromEmail(loggedInVendorEmail);
+
+                // Use a prepared statement to execute the SQL query with a LIKE clause
+                String sql = "SELECT name, category, price, in_stock FROM vendor_items WHERE vendor_id = ? AND (name LIKE ? OR category LIKE ?)";
+                try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                    preparedStatement.setInt(1, vendorId);
+                    preparedStatement.setString(2, "%" + searchQuery + "%");
+                    preparedStatement.setString(3, "%" + searchQuery + "%");
+
+                    // Execute the query and get the result set
+                    try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                        // Create a DefaultTableModel to store the data for the JTable
+                        DefaultTableModel tableModel = (DefaultTableModel) view_items_table.getModel();
+                        tableModel.setRowCount(0); // Clear existing data
+
+                        // Iterate over the result set and populate the table model
+                        while (resultSet.next()) {
+                            itemsFound = true; // Set the flag to true
+                            Object[] rowData = {
+                                    resultSet.getString("name"),
+                                    resultSet.getString("category"),
+                                    resultSet.getDouble("price"),
+                                    resultSet.getInt("in_stock")
+                            };
+                            tableModel.addRow(rowData);
+                        }
+                    }
+                }
+
+                // Check if items were found
+                if (!itemsFound) {
+                    // No items found
+                    JOptionPane.showMessageDialog(this, "Item not found.", "Information", JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                // Close the database connection
+                connection.close();
+            } catch (SQLException ex) {
+                // Handle any SQL exceptions
+                ex.printStackTrace(); // Log or display the exception
+                JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            // If the search query is empty, display all items
+            populateItemsTable();
+        }
+    }//GEN-LAST:event_search_btnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton search_btn;
+    private javax.swing.JTextField search_input;
     private javax.swing.JTable view_items_table;
     // End of variables declaration//GEN-END:variables
 }
