@@ -73,17 +73,11 @@ public class myprofile extends javax.swing.JInternalFrame {
                         location.setSelectedItem(resultSet.getString("location"));
                         phone_no.setText(resultSet.getString("phone_no"));
 
-
-                        // ... other fields
-                        // Populate the checkbox categories
                         String categoriesString = resultSet.getString("item_categories");
                         populateCheckboxFromCategories(categoriesString);
 
-                        // Optional: You can also disable fields if you don't want them to be editable
                          full_name.setEnabled(false);
                          email.setEnabled(false);
-                        // phone_no.setEnabled(false);
-                        // ... disable other fields
                     } else {
                         // Handle the case where user details are not found
                         JOptionPane.showMessageDialog(this, "User details not found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -132,8 +126,10 @@ public class myprofile extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         update_btn = new javax.swing.JButton();
         location = new javax.swing.JComboBox();
+        reset_password_btn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setTitle("My Profile");
         setPreferredSize(new java.awt.Dimension(2250, 1500));
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -228,6 +224,16 @@ public class myprofile extends javax.swing.JInternalFrame {
         location.setFont(new java.awt.Font("Trebuchet MS", 0, 16)); // NOI18N
         location.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "S1", "S 2", "S 3", "S 4", "S 5", "S 6", "S 7", "S 9", "S 10", "S 11", "S 12" }));
 
+        reset_password_btn.setBackground(new java.awt.Color(102, 102, 255));
+        reset_password_btn.setFont(new java.awt.Font("Trebuchet MS", 1, 16)); // NOI18N
+        reset_password_btn.setForeground(new java.awt.Color(255, 255, 255));
+        reset_password_btn.setText("Reset Password");
+        reset_password_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                reset_password_btnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -259,9 +265,10 @@ public class myprofile extends javax.swing.JInternalFrame {
                                         .addComponent(stationaries)
                                         .addComponent(food))
                                     .addGap(18, 18, 18)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                         .addComponent(drinks)
-                                        .addComponent(perfumes))
+                                        .addComponent(perfumes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(reset_password_btn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                     .addGap(95, 95, 95))
                                 .addComponent(full_name))
                             .addGroup(layout.createSequentialGroup()
@@ -270,7 +277,7 @@ public class myprofile extends javax.swing.JInternalFrame {
                                     .addComponent(toiletries)
                                     .addComponent(snacks)))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(371, 371, 371)
+                        .addGap(248, 248, 248)
                         .addComponent(update_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(1518, Short.MAX_VALUE))
         );
@@ -309,9 +316,11 @@ public class myprofile extends javax.swing.JInternalFrame {
                             .addComponent(stationaries)
                             .addComponent(perfumes)
                             .addComponent(toiletries))))
-                .addGap(54, 54, 54)
-                .addComponent(update_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(996, Short.MAX_VALUE))
+                .addGap(51, 51, 51)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(update_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reset_password_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(999, Short.MAX_VALUE))
         );
 
         pack();
@@ -351,11 +360,7 @@ public class myprofile extends javax.swing.JInternalFrame {
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
-                        // Get the existing user details
-//                        String existingLocation = resultSet.getString("location");
-//                        String existingPhoneNo = resultSet.getString("phone_no");
-//                        String existingCategories = resultSet.getString("category");
-
+                        
                         // Get the new values from the form
                         String newLocation = location.getSelectedItem().toString();
                         String newPhoneNo = phone_no.getText();
@@ -418,6 +423,26 @@ public class myprofile extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_update_btnActionPerformed
 
+    private void reset_password_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reset_password_btnActionPerformed
+        // Get the parent frame of myprofile
+        Container parent = this.getParent();
+        while (!(parent instanceof JFrame) && parent != null) {
+            parent = parent.getParent();
+        }
+
+        if (parent instanceof JFrame) {
+            String userEmail = GlobalVariables.getUserEmail();
+            // Instantiate the PasswordResetDialog with the user email
+            PasswordResetDialog passwordResetDialog = new PasswordResetDialog((JFrame) parent, userEmail);
+
+            // Set the dialog visibility to true
+            passwordResetDialog.setVisible(true);
+        } else {
+            // Handle the case when a JFrame parent is not found
+            System.err.println("Error: Unable to find JFrame parent.");
+        }
+    }//GEN-LAST:event_reset_password_btnActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBox drinks;
@@ -433,6 +458,7 @@ public class myprofile extends javax.swing.JInternalFrame {
     private javax.swing.JComboBox location;
     private javax.swing.JCheckBox perfumes;
     private javax.swing.JTextField phone_no;
+    private javax.swing.JButton reset_password_btn;
     private javax.swing.JCheckBox snacks;
     private javax.swing.JCheckBox stationaries;
     private javax.swing.JCheckBox toiletries;

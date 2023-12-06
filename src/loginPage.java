@@ -80,6 +80,8 @@ public class loginPage extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Password");
 
+        email.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
+
         login_btn.setBackground(new java.awt.Color(255, 255, 255));
         login_btn.setFont(new java.awt.Font("Trebuchet MS", 0, 22)); // NOI18N
         login_btn.setForeground(new java.awt.Color(51, 51, 255));
@@ -89,6 +91,8 @@ public class loginPage extends javax.swing.JFrame {
                 login_btnActionPerformed(evt);
             }
         });
+
+        password.setFont(new java.awt.Font("Trebuchet MS", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -113,7 +117,7 @@ public class loginPage extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
+                .addContainerGap(95, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -161,7 +165,7 @@ public class loginPage extends javax.swing.JFrame {
 
             // Close the current login form if login was successful (optional)
             if (loginSuccessful) {
-                // decalre the user email a s a global variable
+                // decalre the logged-in user email as a global variable
                 GlobalVariables.setUserEmail(email_id);
                 this.dispose();
 
@@ -200,9 +204,8 @@ public class loginPage extends javax.swing.JFrame {
     private void openDashboard(String userRole) {
         if ("admin".equals(userRole)) {
             // Open admin dashboard
-            JOptionPane.showMessageDialog(null, "Admin login successful!", "Success", JOptionPane.INFORMATION_MESSAGE);
-//            AdminDashboard adminDashboard = new AdminDashboard();
-//            adminDashboard.setVisible(true);
+            admin_dashboard adminDashboard = new admin_dashboard();
+            adminDashboard.setVisible(true);
         }
         else if ("vendor".equals(userRole)) {
             // Open vendor dashboard

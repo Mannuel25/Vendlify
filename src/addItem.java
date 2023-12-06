@@ -44,6 +44,7 @@ public class addItem extends javax.swing.JInternalFrame {
         add_item_btn = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setTitle("Add an Item");
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Trebuchet MS", 1, 18)); // NOI18N
