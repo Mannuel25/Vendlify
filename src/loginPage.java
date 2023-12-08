@@ -38,7 +38,7 @@ public class loginPage extends javax.swing.JFrame {
 
         // Define the desired size (e.g., 300x200 pixels)
         int desiredWidth = 130;
-        int desiredHeight = 70;
+        int desiredHeight = 60;
 
         // Scale the original image to the desired size
         Image scaledImage = originalImage.getScaledInstance(desiredWidth, desiredHeight, Image.SCALE_SMOOTH);
