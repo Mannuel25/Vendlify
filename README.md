@@ -1,5 +1,3 @@
-Certainly! Below is the updated README.md with the SQL statements for creating the necessary database tables:
-
 # Vendlify - Vendor Management App
 
 Vendlify is a Java GUI-based Vendor Management Application designed to streamline the process of vendor registration, profile management, and inventory control. The application prioritizes security, convenience, and efficient management for both vendors and administrators.
