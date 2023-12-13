@@ -1,44 +1,44 @@
-# Vendlify - Vendor Management App
+# Vendlify - Vendor Management App 🛍️
 
 Vendlify is a Java GUI-based Vendor Management Application designed to streamline the process of vendor registration, profile management, and inventory control. The application prioritizes security, convenience, and efficient management for both vendors and administrators.
 
-## Features
+## Features 🚀
 
-### Secure Registration
+### Secure Registration 🔒
 
 User passwords are securely hashed during registration, ensuring the confidentiality of vendor credentials.
 
-### Dual Authentication
+### Dual Authentication 🔄
 
 The application supports two login credentials - admin and vendor - providing distinct access levels and functionalities.
 
-### Vendor Dashboard
+### Vendor Dashboard 📊
 
 Vendors can create accounts, log in, and easily update their profiles. Additionally, they can manage their inventory by adding, updating, and deleting items they sell.
 
-### Product Categories
+### Product Categories 📦
 
 Vendlify organizes products into six categories: food, drinks, snacks, stationaries, perfumes & deodorant, and toiletries. This categorization facilitates a structured and user-friendly experience.
 
-### Admin Dashboard
+### Admin Dashboard 👑
 
 Administrators can log in to access a comprehensive view of all registered vendors. This dashboard allows administrators to update, delete, and search for vendors efficiently.
 
-### Inventory Management
+### Inventory Management 📋
 
 Vendors can update, delete, and search for any item they sell, providing them with control over their product listings.
 
-### Vendor Management
+### Vendor Management 🤝
 
 Administrators have the capability to update, delete, and search for any vendor, ensuring robust management and oversight.
 
-## Getting Started
+## Getting Started 🚗
 
 1. Clone the repository to your local machine.
 2. Open the project in your preferred Java development environment.
 3. Run the `Vendlify.java` file to launch the application.
 
-## Setting Up the Database
+## Setting Up the Database 🛠️
 
 1. Create a MySQL database named `vendlify`.
 
@@ -69,18 +69,18 @@ CREATE TABLE vendor_items (
 
 3. Update the `DBConnector` class in the project with your MySQL database connection details.
 
-## Dependencies
+## Dependencies 📦
 
 - Java 8 or higher
 - MySQL
 
-## Usage
+## Usage 🕹️
 
 1. Launch the application.
 2. Log in as either a vendor or an administrator.
 3. Follow the on-screen prompts to manage profiles, inventory, and vendors.
 
-## License
+## License 📄
 
 This project is licensed under the [MIT License](LICENSE).
 
