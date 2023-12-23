@@ -36,7 +36,7 @@ Administrators have the capability to update, delete, and search for any vendor,
 
 1. Clone the repository to your local machine.
 2. Open the project in your preferred Java development environment.
-3. Run the `Vendlify.java` file to launch the application.
+3. Run the `homePage.java` file to launch the application.
 
 ## Setting Up the Database 🛠️
 
