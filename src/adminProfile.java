@@ -53,8 +53,7 @@ public class adminProfile extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-   
+
     public adminProfile(String userEmail) {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -233,7 +232,6 @@ public class adminProfile extends javax.swing.JInternalFrame {
                         String newPhoneNo = phone_no.getText();
                         String newName = full_name.getText();
 
-                        
                         // Update the database with new values
                         String updateSql = "UPDATE vendors SET phone_no = ?, full_name = ? WHERE email = ?";
                         try (PreparedStatement updateStatement = connection.prepareStatement(updateSql)) {

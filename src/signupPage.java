@@ -21,8 +21,7 @@ public class signupPage extends javax.swing.JFrame {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/vendlify";
     private static final String USER = "root";
     private static final String PASSWORD = "";
-    
-    
+
     public signupPage() {
         initComponents();
         displayImage();
@@ -189,7 +188,6 @@ public class signupPage extends javax.swing.JFrame {
         }
     }
 
-    
     private static void signupUser(Connection connection, String full_name, String email, String password) throws SQLException {
         String hashedPassword = hashPassword(password);
         String sql = "INSERT INTO vendors (full_name, email, password) VALUES (?, ?, ?)";
@@ -208,7 +206,6 @@ public class signupPage extends javax.swing.JFrame {
         }
     }
 
-    
     private void submit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_submit_btnActionPerformed
         try{
             Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
@@ -217,7 +214,7 @@ public class signupPage extends javax.swing.JFrame {
             String email_id = email.getText();
             char[] passwordChars = password.getPassword();
             String user_password = new String(passwordChars);
-              
+
             signupUser(connection, user_name, email_id, user_password);
             // Close the database connection
             connection.close();

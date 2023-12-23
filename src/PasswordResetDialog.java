@@ -89,7 +89,6 @@ public class PasswordResetDialog extends JDialog {
             return null;
         }
     }
-    
 
     private void performPasswordReset() {
         try {

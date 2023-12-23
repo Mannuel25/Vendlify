@@ -191,8 +191,6 @@ public class addItem extends javax.swing.JInternalFrame {
 
                 // Execute the SQL statement to insert the item
                 preparedStatement.executeUpdate();
-
-                // Optionally, you can show a success message or perform other actions
                 JOptionPane.showMessageDialog(this, "Item added successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             }
 
@@ -212,7 +210,6 @@ public class addItem extends javax.swing.JInternalFrame {
         try {
             Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
 
-            // Use a prepared statement to execute the SQL query
             String sql = "SELECT id FROM vendors WHERE email = ?";
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, email);
@@ -257,7 +254,6 @@ public class addItem extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_add_item_btnActionPerformed
 
     private void add_item_btnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_item_btnMouseClicked
-        
     }//GEN-LAST:event_add_item_btnMouseClicked
 
 

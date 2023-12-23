@@ -61,8 +61,6 @@ public class VendorDialog extends JDialog {
 
         // Set layout manager (GridLayout for better arrangement)
         setLayout(new GridLayout(6, 2, 10, 10));
-           
-        
         // Add components to the layout
         add(new JLabel("Full Name:"));
         add(vendorNameField);
@@ -74,8 +72,6 @@ public class VendorDialog extends JDialog {
         add(vendorLocationDropdown);
         add(updateButton);
         add(deleteButton);
-        
-        
 
         // Fetch and populate item details if vendorItemId is provided
         if (vendorId > 0) {
@@ -165,5 +161,3 @@ public class VendorDialog extends JDialog {
         }
     }
 }
-    
-

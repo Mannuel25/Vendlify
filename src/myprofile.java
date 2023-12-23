@@ -21,7 +21,7 @@ public class myprofile extends javax.swing.JInternalFrame {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/vendlify";
     private static final String USER = "root";
     private static final String PASSWORD = "";
-    
+
     // Helper method to populate checkbox categories
     private void populateCheckboxFromCategories(String categoriesString) {
         // Split the categories string into an array
@@ -53,7 +53,7 @@ public class myprofile extends javax.swing.JInternalFrame {
             }
         }
     }
-    
+
     // Method to fetch and populate user details
     private void fetchAndPopulateUserDetails(String userEmail) {
         try {
@@ -76,8 +76,8 @@ public class myprofile extends javax.swing.JInternalFrame {
                         String categoriesString = resultSet.getString("item_categories");
                         populateCheckboxFromCategories(categoriesString);
 
-                         full_name.setEnabled(false);
-                         email.setEnabled(false);
+                        full_name.setEnabled(false);
+                        email.setEnabled(false);
                     } else {
                         // Handle the case where user details are not found
                         JOptionPane.showMessageDialog(this, "User details not found!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -91,7 +91,7 @@ public class myprofile extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
     // Constructor that takes the user email as a parameter
     public myprofile(String userEmail) {
         initComponents();
@@ -103,8 +103,6 @@ public class myprofile extends javax.swing.JInternalFrame {
         fetchAndPopulateUserDetails(userEmail);
     }
 
-   
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

@@ -22,15 +22,12 @@ import vendlify.GlobalVariables;
 
 
 public class viewItems extends javax.swing.JInternalFrame {
-    
     private javax.swing.JDesktopPane jDesktopPanel;
 
-    
     private static final String DB_URL = "jdbc:mysql://localhost:3306/vendlify";
     private static final String USER = "root";
     private static final String PASSWORD = "";
-    
-    
+
     // Method to fetch the user ID from the database based on email
     public static int getUserIdFromEmail(String email) {
         int userId = 0;
@@ -109,7 +106,6 @@ public class viewItems extends javax.swing.JInternalFrame {
         populateItemsTable();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

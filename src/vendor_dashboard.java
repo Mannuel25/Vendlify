@@ -24,13 +24,11 @@ public class vendor_dashboard extends javax.swing.JFrame {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/vendlify";
     private static final String USER = "root";
     private static final String PASSWORD = "";
-    
-    
+
     public vendor_dashboard() {
         initComponents();
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -227,12 +225,8 @@ public class vendor_dashboard extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void my_profileMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_my_profileMousePressed
-        
-        
     }//GEN-LAST:event_my_profileMousePressed
-    
-    
-    
+
     private void my_profile_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_my_profile_labelMouseClicked
         // Fetch user details from the database
         String userEmail = GlobalVariables.getUserEmail();
@@ -249,8 +243,7 @@ public class vendor_dashboard extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_my_profile_labelMouseClicked
-      
-    
+
     private void view_items_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_view_items_labelMouseClicked
         // Open the viewItems form
         viewItems viewItemsForm = new viewItems();
@@ -258,12 +251,11 @@ public class vendor_dashboard extends javax.swing.JFrame {
         // Add the viewItems form to the desktop pane
         jDesktopPanel.removeAll();
         jDesktopPanel.add(viewItemsForm).setVisible(true);
-        
+
     }//GEN-LAST:event_view_items_labelMouseClicked
 
     private void add_item_labelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_add_item_labelMouseClicked
-        
-       addItem add_itemForm = new addItem();
+        addItem add_itemForm = new addItem();
         jDesktopPanel.removeAll();
         jDesktopPanel.add(add_itemForm).setVisible(true);
     }//GEN-LAST:event_add_item_labelMouseClicked
@@ -283,7 +275,6 @@ public class vendor_dashboard extends javax.swing.JFrame {
             loginPage loginPage = new loginPage();
             loginPage.setVisible(true);
 
-            
         }
     }//GEN-LAST:event_logout_labelMouseClicked
 

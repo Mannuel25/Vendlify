@@ -17,9 +17,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import java.awt.Frame;
 
-
 import vendlify.GlobalVariables;
-
 
 public class viewVendors extends javax.swing.JInternalFrame {
 
@@ -28,8 +26,7 @@ public class viewVendors extends javax.swing.JInternalFrame {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/vendlify";
     private static final String USER = "root";
     private static final String PASSWORD = "";
-    
-    
+
     // Populate the items table with data from the vendor_items table
     private void populateVendorsTable() {
         // Populate the vendor table with data from the vendors table
@@ -68,8 +65,6 @@ public class viewVendors extends javax.swing.JInternalFrame {
         }
 
     }
-    
-    
     public viewVendors() {
         initComponents();
         this.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
@@ -81,7 +76,6 @@ public class viewVendors extends javax.swing.JInternalFrame {
         
     }
 
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -186,7 +180,6 @@ public class viewVendors extends javax.swing.JInternalFrame {
             try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
                 preparedStatement.setString(1, vendorName);
                 preparedStatement.setString(2, vendorEmail);
-                
 
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     if (resultSet.next()) {
@@ -216,12 +209,6 @@ public class viewVendors extends javax.swing.JInternalFrame {
             boolean itemsFound = false; // Flag to check if items were found
 
             try (Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD)) {
-                // Fetch the email of the logged-in vendor
-//                String loggedInVendorEmail = GlobalVariables.getUserEmail();
-
-                // Fetch the vendor ID based on the email
-//                int vendorId = getUserIdFromEmail(loggedInVendorEmail);
-
                 // Use a prepared statement to execute the SQL query with a LIKE clause
                 String sql = "SELECT full_name, email, phone_no, location, item_categories FROM vendors WHERE (full_name LIKE ? OR email LIKE ?)";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -244,7 +231,6 @@ public class viewVendors extends javax.swing.JInternalFrame {
                                 resultSet.getString("phone_no"),
                                 resultSet.getString("location"),
                                 resultSet.getString("item_categories")
-
                             };
                             tableModel.addRow(rowData);
                         }

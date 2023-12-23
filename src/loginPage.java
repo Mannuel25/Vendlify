@@ -23,7 +23,7 @@ public class loginPage extends javax.swing.JFrame {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/vendlify";
     private static final String USER = "root";
     private static final String PASSWORD = "";
-    
+
     public loginPage() {
         initComponents();
         displayImage();

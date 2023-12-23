@@ -16,8 +16,7 @@ public class homePage extends javax.swing.JFrame {
         initComponents();
         displayImage();
     }
-     
-    
+
     private void displayImage() {
         // Load the image
         ImageIcon originalIcon = new ImageIcon("C:/Users/Ajapo02/Pictures/vendlify_img.png");

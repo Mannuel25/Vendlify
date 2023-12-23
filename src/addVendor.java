@@ -193,7 +193,7 @@ public class addVendor extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_emailActionPerformed
 
     private void add_vendor_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_add_vendor_btnActionPerformed
-       try{
+        try{
             Connection connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
 
             String user_name = full_name.getText();
