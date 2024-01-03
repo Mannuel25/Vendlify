@@ -1,6 +1,6 @@
 # Vendlify - Vendor Management App 🛍️
 
-Vendlify is a Java GUI-based Vendor Management Application designed to streamline the process of vendor registration, profile management, and inventory control. The application prioritizes security, convenience, and efficient management for both vendors and administrators.
+Vendlify is a Java GUI-based Vendor Management Application designed to streamline the process of vendor registration, profile management, and inventory control. The application prioritizes security, convenience, and efficient management for vendors and administrators.
 
 ## Features 🚀
 
@@ -18,19 +18,19 @@ Vendors can create accounts, log in, and easily update their profiles. Additiona
 
 ### Product Categories 📦
 
-Vendlify organizes products into six categories: food, drinks, snacks, stationaries, perfumes & deodorant, and toiletries. This categorization facilitates a structured and user-friendly experience.
+Vendlify organizes products into six categories: food, drinks, snacks, stationery, perfumes & deodorant, and toiletries. This categorization facilitates a structured and user-friendly experience.
 
 ### Admin Dashboard 👑
 
-Administrators can log in to access a comprehensive view of all registered vendors. This dashboard allows administrators to update, delete, and search for vendors efficiently.
+Administrators can log in to access a comprehensive view of all registered vendors. This dashboard allows administrators to efficiently update, delete, and search for vendors.
 
 ### Inventory Management 📋
 
-Vendors can update, delete, and search for any item they sell, providing them with control over their product listings.
+Vendors can update, delete, and search for any item they sell, giving them control over their product listings.
 
 ### Vendor Management 🤝
 
-Administrators have the capability to update, delete, and search for any vendor, ensuring robust management and oversight.
+Administrators can update, delete, and search for any vendor, ensuring robust management and oversight.
 
 ## Getting Started 🚗
 
@@ -79,6 +79,7 @@ CREATE TABLE vendor_items (
 1. Launch the application.
 2. Log in as either a vendor or an administrator.
 3. Follow the on-screen prompts to manage profiles, inventory, and vendors.
+4. You can find the app screenshots [here](./screenshots).
 
 ## License 📄
 
